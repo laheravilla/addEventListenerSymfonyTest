@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body class="container">
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script>
+                var $client_continent = $('#client_continent');
+                var $client__token = $('#client__token');
+
+                $client_continent.change(function () {
+                    var $form = $(this).closest('form');
+                    var data = {};
+                    data[$client__token.attr('name')] = $client__token.val();
+                    data[$client_continent.attr('name')] = $client_continent.val();
+
+                    $.post($form.attr('action'), data).then(function (response) {
+                       $('#client_country').replaceWith(
+                           $(response).find('#client_country')
+                       )
+                    });
+                });
+            </script>
+        {% endblock %}
+    </body>
+</html>
