@@ -1,6 +1,6 @@
 # addEventListenerSymfonyTest
 
-1) $composer install
+1) `$composer install`
 
 2) Creation de .env.local
 
