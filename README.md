@@ -1,13 +1,17 @@
 # addEventListenerSymfonyTest
 
-$composer install
+1) $composer install
 
-Creation de .env.local
+2) Creation de .env.local
 
-$php bin/console doctrine:database:create
+3) $php bin/console doctrine:database:create
 
-$php bin/console doctrine:schema:update --dump-sql
+4) $php bin/console doctrine:schema:update --dump-sql
 
-$php bin/console doctrine:schema:update --force
+5) $php bin/console doctrine:schema:update --force
 
-$php bin/console doctrine:fixture:load
+6) $php bin/console doctrine:fixtures:load
+
+7) Fill country table in database because empty
+
+
