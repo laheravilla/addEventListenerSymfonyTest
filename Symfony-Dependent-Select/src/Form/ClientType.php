@@ -42,7 +42,6 @@ class ClientType extends AbstractType
                     'placeholder' => 'Select your country',
                     'choices' => $form->getData()->getCountries()
                 ]);
-
             }
         );
 
@@ -56,21 +55,25 @@ class ClientType extends AbstractType
 
                 if ($country) {
                     $form->get('continent')->setData($country->getContinent());
-
-                    $form->add('country', EntityType::class, [
-                        'class' => Country::class,
-                        'placeholder' => 'Select your country',
-                        'choices' => $country->getContinent()->getCountries()
-                    ]);
+                    $this->getCountryFormChildForEdition($form, $country, $country->getContinent()->getCountries());
                 } else {
-                    $form->add('country', EntityType::class, [
-                        'class' => Country::class,
-                        'placeholder' => 'Select your country',
-                        'choices' => []
-                    ]);
+                    $this->getCountryFormChildForEdition($form, $country, null);
                 }
             }
         );
+    }
+
+    public function getCountryFormChildForEdition($form, $country, $countryChoices = null) {
+        if ($countryChoices === null) {
+           $countryChoices = [];
+        } else {
+            $countryChoices = $country->getContinent()->getCountries();
+        }
+        return $form->add('country', EntityType::class, [
+            'class' => Country::class,
+            'placeholder' => 'Select your country',
+            'choices' => $countryChoices
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
