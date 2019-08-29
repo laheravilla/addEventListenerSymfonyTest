@@ -2,7 +2,7 @@
 
 1) `$ composer install`
 
-2) Creation de .env.local
+2) Creation de `.env.local`
 
 3) `$ php bin/console doctrine:database:create`
 
