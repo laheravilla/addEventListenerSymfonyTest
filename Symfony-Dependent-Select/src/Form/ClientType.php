@@ -64,16 +64,12 @@ class ClientType extends AbstractType
     }
 
     public function getCountryFormChildForEdition($form, $country, $countryChoices = null) {
-        if ($countryChoices === null) {
-           $countryChoices = [];
-        } else {
-            $countryChoices = $country->getContinent()->getCountries();
-        }
-        return $form->add('country', EntityType::class, [
+       $countryChoices = $countryChoices === null ? [] : $country->getContinent()->getCountries();
+       return $form->add('country', EntityType::class, [
             'class' => Country::class,
             'placeholder' => 'Select your country',
             'choices' => $countryChoices
-            ]);
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
